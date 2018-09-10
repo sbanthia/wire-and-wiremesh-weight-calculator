@@ -4,13 +4,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.util.LogPrinter;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.lang.String;
 
 public class MainScreen extends AppCompatActivity {
     TextView result_kgsqft;
@@ -90,23 +95,39 @@ public class MainScreen extends AppCompatActivity {
             public void onClick(View v) {
                 if (wiredia_unit.isChecked()){
 
-                }else{
-                    HashMap<Integer, Double> dia = new HashMap<Integer, Double>();
+                }else {
+                    HashMap<Double, Double> dia = new HashMap<Double, Double>();
 
                     /*Adding elements to HashMap*/
-                    dia.put(16,1.6);
-                    dia.put(14,2.0);
-                    dia.put(12,2.5);
-                    dia.put(11,2.8);
-                    dia.put(10,3.0);
-                    dia.put(9,3.5);
-                    dia.put(8,4.0);
-                    double mm_wiredia = wiredia_val;
+                    dia.put(16.0, 1.6);
+                    dia.put(14.0, 2.0);
+                    dia.put(12.0, 2.5);
+                    dia.put(11.0, 2.8);
+                    dia.put(10.0, 3.0);
+                    dia.put(9.0, 3.5);
+                    dia.put(8.0, 4.0);
 
-                    wiredia_val=dia.get(mm_wiredia);
+                    ArrayList<Integer> arr = new ArrayList<Integer>(7);
+
+                    // using add() to initialize values
+                    // [1, 2, 3, 4]
+                    arr.add(8);
+                    arr.add(9);
+                    arr.add(10);
+                    arr.add(11);
+                    arr.add(12);
+                    arr.add(14);
+                    arr.add(16);
+
+                    if (arr.contains(wiredia_val)) {
 
 
+                        double mm_wiredia = wiredia_val;
 
+                        wiredia_val = dia.get(mm_wiredia);
+
+
+                    }
                 }
 
             }
@@ -130,10 +151,20 @@ public class MainScreen extends AppCompatActivity {
                                          @Override
                                          public void onClick(View v) {
 
+                                             Log.d("MYNum",Double.toString(wiredia_val));
+                                             Log.d("MYNum",Double.toString(holesize_val));
+
+
                                              area_result_sqft = (wiredia_val * wiredia_val * 1.29) / holesize_val;
                                              area_result_sqm = area_result_sqft / 0.092903;
-                                             area_result_sqft = (double) Math.round(area_result_sqft * 100d) / 100d;
-                                             area_result_sqm = (double) Math.round(area_result_sqm * 100d) / 100d;
+//                                             area_result_sqft =  (area_result_sqft * 10000d) / 10000d;
+//                                             area_result_sqm =  (area_result_sqm * 10000d) / 10000d;
+
+                                             Log.d("MYNum",Double.toString(area_result_sqft));
+                                             Log.d("MYNum",Double.toString(area_result_sqm));
+
+
+
 
                                              result_kgsqft.setText(String.valueOf(area_result_sqft));
                                              result_kgsqm.setText(String.valueOf(area_result_sqm));

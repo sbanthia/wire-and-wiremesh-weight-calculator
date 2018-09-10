@@ -92,7 +92,8 @@
         android:layout_marginLeft="52dp"
         android:layout_marginStart="52dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
+        android:text="0"
         app:layout_constraintBottom_toTopOf="@+id/rollheight"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
@@ -171,7 +172,7 @@
         android:layout_marginRight="173dp"
         android:layout_marginStart="24dp"
         android:ems="10"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
